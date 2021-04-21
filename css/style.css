@@ -1,6 +1,6 @@
 body {
   font-family: var(--font-family);
-  background: radial-gradient(at top, rgb(32, 38, 44), rgb(61, 61, 136));
+  background: radial-gradient(at top, var(--bg-grad-1), var(--bg-grad-2));
   min-height: 100vh;
   color: var(--text_color);
   text-transform: uppercase;
@@ -17,7 +17,7 @@ body {
   display: flex;
   justify-content: space-between;
   align-items: center;
-  border: 2px solid white;
+  border: 2px solid var(--outline);
   border-radius: 20px;
   padding: 1rem 1.5rem 1rem 2rem;
   height: 200px;
@@ -30,6 +30,9 @@ body {
   flex-flow: column;
   justify-content: center;
   align-items: center;
+  background: rgb(46, 88, 226);
+  padding: 20px;
+  border-radius: 40%;
 }
 .score__title {
   font-size: 1.5rem;
@@ -46,7 +49,7 @@ body {
   grid-template-columns: repeat(2, 1fr);
   grid-template-areas: 'rock paper' 'scissors scissors';
   place-items: center;
-  height: 40rem;
+  height: 30rem;
   padding-top: 4rem;
   position: relative;
 }
@@ -74,14 +77,15 @@ body {
   background: rgb(82, 235, 12);
   display: grid;
   place-items: center;
-  box-shadow: inset 0 0.8rem rgb(223, 212, 212);
+  box-shadow: inset 0 0.8rem var(--shadow-light);
+  border-radius: 50%;
 }
 .choice::before,
 .choice::after {
   position: absolute;
   content: '';
-  width: 150%;
-  height: 150%;
+  width: 130%;
+  height: 130%;
   border-radius: 50%;
   z-index: -1;
   top: -15%;
@@ -104,18 +108,18 @@ body {
 }
 
 .choice.rock::before {
-  background: linear-gradient(to bottom), rgb(117, 209, 221), rgb(45, 230, 168);
-  box-shadow: 0 0.5rem rgb(79, 79, 224), 0 0.5rem rgb(182, 58, 240);
+  background: linear-gradient(to bottom, var(--rock-1), var(--rock-2));
+  box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--rock-2);
 }
 
 .choice.paper::before {
-  background: linear-gradient(to bottom), rgb(117, 209, 221), rgb(45, 230, 168);
-  box-shadow: 0 0.5rem rgb(79, 79, 224), 0 0.5rem rgb(182, 58, 240);
+  background: linear-gradient(to bottom, var(--paper-1), var(--paper-2));
+  box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--paper-1);
 }
 
 .choice.scissors::before {
-  background: linear-gradient(to bottom), rgb(117, 209, 221), rgb(45, 230, 168);
-  box-shadow: 0 0.5rem rgb(79, 79, 224), 0 0.5rem rgb(182, 58, 240);
+  background: linear-gradient(to bottom, var(--scissors-1), var(--scissors-2));
+  box-shadow: 0 0.5rem var(--shadow-med), 0 0.5rem var(--scissors-2);
 }
 
 .choice-btn[data-choice='rock'] {
@@ -128,4 +132,89 @@ body {
 
 .choice-btn[data-choice='scissors'] {
   grid-area: scissors;
+}
+
+.results {
+  display: grid;
+  grid-template-columns: repeat(2, 1fr);
+  place-items: center;
+  grid-template-areas: 'you-title ai-title' 'you-picked ai-picked';
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+.results__heading {
+  font-size: 1.5rem;
+  letter-spacing: 00.1em;
+  padding: 4rem 0 8rem;
+}
+
+.results__result {
+  min-width: 10rem;
+  min-height: 10rem;
+  background: yellow;
+  border-radius: 50%;
+  transform: scale(1.4);
+  z-index: -1;
+}
+
+.results__heading:first-of-type {
+  grid-area: you-title;
+}
+.results__heading:last-of-type {
+  grid-area: ai-title;
+}
+.results__result:first-of-type {
+  grid-area: you-picked;
+}
+.results__result:last-of-type {
+  grid-area: ai-picked;
+}
+
+/* класс,который будем добавлять JS  */
+.winner {
+  box-shadow: 0 0 40px var(--winner-back1), 0 0 80px var(--winner-back2),
+    0 0 0 130px var(--winner-back3);
+  animation: winner 1s ease forwards;
+}
+@keyframes winner {
+  from {
+    opacity: 0;
+  }
+  to {
+    opacity: 1;
+  }
+}
+
+.results.show-winner {
+  grid-template-columns: repeat(3, 1fr);
+  grid-template-areas: 'you-title ai-title' 'you-picked result-winner ai-picked';
+}
+
+.results__winner {
+  grid-area: result-winner;
+  display: grid;
+  place-items: center;
+}
+.results-text {
+  font-size: 3rem;
+  padding-bottom: 1.5rem;
+}
+
+.play-again {
+  font-size: 1.3rem;
+  text-transform: uppercase;
+  font-family: inherit;
+  letter-spacing: 0.1em;
+  color: var(--dark-text);
+  background: ivory;
+  outline: none;
+  border: none;
+  border-radius: 47%;
+  padding: 10px 20px;
+  cursor: pointer;
+}
+
+.play-again:focus{
+  border: 5px solid var(--outline);
 }
