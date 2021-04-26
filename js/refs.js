@@ -1,7 +1,7 @@
 export default {
   // btnRules: document.querySelector(""),
   choiceBtns: document.querySelectorAll('.choice-btn'),
-  sectionGame: document.querySelectorAll('.game'),
+  sectionGame: document.querySelector('.game'),
   resultsDiv: document.querySelector('.results'),
   resultsDivs: document.querySelectorAll('.results__result'),
   resultsWinner: document.querySelector('.results__winner'),
