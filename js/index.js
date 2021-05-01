@@ -51,6 +51,7 @@ function showResults(results) {
 }
 
 // функция: кто победил!
+let score = 0
 function showWinner(results) {
   setTimeout(() => {
     const userWinn = results[0].bits === results[1].name
@@ -58,10 +59,13 @@ function showWinner(results) {
     if (userWinn) {
       refs.resultsText.innerText = 'Вы победили!'
       refs.resultsDivs[0].classList.toggle('winner')
-      
+      score += 1
+      refs.scoreNumber.textContent = score
     } else if (compWinn) {
       refs.resultsText.textContent = 'Вы проиграли'
       refs.resultsDivs[1].classList.toggle('winner')
+      score -= 1
+      refs.scoreNumber.textContent = score
     } else {
       refs.resultsText.textContent = 'Победила ДРУЖБА'
     }
