@@ -8,7 +8,7 @@ export default {
   resultsText: document.querySelector('.results__text'),
   playAgain: document.querySelector('.play-again'),
   rulesBtn: document.querySelector('.rules-btn'),
-  scoreNumber: document.querySelector('.score-number'),
+  scoreNumber: document.querySelector('.score__number'),
   modal: document.querySelector('.modal'),
   closeBtn: document.querySelector('.close-btn'),
 }
